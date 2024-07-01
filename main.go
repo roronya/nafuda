@@ -14,26 +14,45 @@ const htmlTemplate = `
 <html>
 <head>
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
+    body {
+        font-family: 'M PLUS 1p', sans-serif;
+    }
+    @page {
+        size: A4;
+        margin: 1cm;
+    }
+    body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: 240px;
+    }
     .badge {
-        width: 48%;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto auto;
         border: 1px solid black;
-        padding: 10px;
-        margin: 1%;
-        float: left;
-        box-sizing: border-box;
+        padding: 8px;
+        column-gap: 16px;
+
     }
     .badge img {
-        max-width: 100px;
+        max-width: 100%;
         height: auto;
-        display: block;
-        margin-bottom: 10px;
+        grid-row: 1 / span 2;
+        justify-self: center;
+        align-self: center;
     }
     .badge .name {
-        font-size: 18px;
+        font-size: 48px;
         font-weight: bold;
+        align-self: end;
+        justify-self: start;
     }
     .badge .title {
-        font-size: 14px;
+        font-size: 16px;
+        align-self: start;
+        justify-self: start;
     }
 </style>
 </head>
@@ -114,4 +133,3 @@ func main() {
 
 	fmt.Println("名札の作成が完了しました。name_badges.html を確認してください。")
 }
-
