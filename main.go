@@ -15,50 +15,57 @@ const htmlTemplate = `
 <head>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
-    body {
-        font-family: 'M PLUS 1p', sans-serif;
-    }
     @page {
         size: A4;
         margin: 1cm;
     }
     body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: 240px;
+        font-family: 'M PLUS 1p', sans-serif;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        page-break-inside: avoid;
     }
-    .badge {
+    .nafuda {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: auto auto;
         border: 1px solid black;
         padding: 8px;
+        box-sizing: border-box;
+        height: 240px;
+        page-break-inside: avoid;
         column-gap: 16px;
-
     }
-    .badge img {
+    .nafuda img {
         max-width: 100%;
         height: auto;
         grid-row: 1 / span 2;
         justify-self: center;
         align-self: center;
     }
-    .badge .name {
+    .nafuda .name {
         font-size: 48px;
         font-weight: bold;
         align-self: end;
         justify-self: start;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
-    .badge .title {
+    .nafuda .title {
         font-size: 16px;
         align-self: start;
         justify-self: start;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 </head>
 <body>
 {{range .}}
-<div class="badge">
+<div class="nafuda">
     <img src="{{.Image}}" alt="{{.FullName}}">
     <div class="name">{{.FullName}}</div>
     <div class="title">{{.Title}}</div>
@@ -115,12 +122,12 @@ func main() {
 	}
 
 	// HTMLを生成
-	tmpl, err := template.New("badges").Parse(htmlTemplate)
+	tmpl, err := template.New("nafuda").Parse(htmlTemplate)
 	if err != nil {
 		log.Fatalf("Error parsing template: %v", err)
 	}
 
-	file, err := os.Create("name_badges.html")
+	file, err := os.Create("nafuda.html")
 	if err != nil {
 		log.Fatalf("Error creating HTML file: %v", err)
 	}
@@ -131,5 +138,6 @@ func main() {
 		log.Fatalf("Error executing template: %v", err)
 	}
 
-	fmt.Println("名札の作成が完了しました。name_badges.html を確認してください。")
+	fmt.Println("complete! see nafudas.html")
 }
+
