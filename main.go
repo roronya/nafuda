@@ -138,6 +138,6 @@ func main() {
 		log.Fatalf("Error executing template: %v", err)
 	}
 
-	fmt.Println("complete! see nafudas.html")
+	fmt.Println("complete! see nafuda.html")
 }
 
