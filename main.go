@@ -29,7 +29,7 @@ const htmlTemplate = `
     .nafuda {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto auto auto;
         border: 1px solid black;
         padding: 8px;
         box-sizing: border-box;
@@ -40,7 +40,7 @@ const htmlTemplate = `
     .nafuda img {
         max-width: 100%;
         height: auto;
-        grid-row: 1 / span 2;
+        grid-row: 1 / span 3;
         justify-self: center;
         align-self: center;
     }
@@ -48,6 +48,14 @@ const htmlTemplate = `
         font-size: 48px;
         font-weight: bold;
         align-self: end;
+        justify-self: start;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .nafuda .display_name {
+        font-size: 24px;
+        align-self: start;
         justify-self: start;
         white-space: nowrap;
         overflow: hidden;
@@ -68,6 +76,7 @@ const htmlTemplate = `
 <div class="nafuda">
     <img src="{{.Image}}" alt="{{.FullName}}">
     <div class="name">{{.FullName}}</div>
+    <div class="display_name">@{{.DisplayName}}</div>
     <div class="title">{{.Title}}</div>
 </div>
 {{end}}
@@ -76,9 +85,10 @@ const htmlTemplate = `
 `
 
 type Member struct {
-	FullName string
-	Title    string
-	Image    string
+	FullName    string
+	DisplayName string
+	Title       string
+	Image       string
 }
 
 func main() {
@@ -114,9 +124,10 @@ func main() {
 		}
 
 		member := Member{
-			FullName: user.RealName,
-			Title:    user.Profile.Title,
-			Image:    user.Profile.Image192,
+			FullName:    user.RealName,
+			DisplayName: user.Profile.DisplayName,
+			Title:       user.Profile.Title,
+			Image:       user.Profile.Image192,
 		}
 		members = append(members, member)
 	}
@@ -140,4 +151,3 @@ func main() {
 
 	fmt.Println("complete! see nafuda.html")
 }
-
