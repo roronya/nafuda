@@ -23,7 +23,7 @@ const htmlTemplate = `
         font-family: 'M PLUS 1p', sans-serif;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 240px);
         page-break-inside: avoid;
     }
     .nafuda {
@@ -45,29 +45,35 @@ const htmlTemplate = `
         align-self: center;
     }
     .nafuda .name {
+        width: 100%;
         font-size: 48px;
         font-weight: bold;
         align-self: end;
         justify-self: start;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis;
+        text-overflow: clip;
+        word-break: break-all;
     }
     .nafuda .display_name {
+        width: 100%;
         font-size: 24px;
         align-self: start;
         justify-self: start;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis;
+        text-overflow: clip;
+        word-break: break-all;
     }
     .nafuda .title {
+        width: 100%;
         font-size: 16px;
         align-self: start;
         justify-self: start;
         white-space: nowrap;
         overflow: hidden;
-        text-overflow: ellipsis;
+        text-overflow: clip;
+        word-break: break-all;
     }
 </style>
 </head>
